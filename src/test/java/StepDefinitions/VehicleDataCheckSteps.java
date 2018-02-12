@@ -43,6 +43,8 @@ public class VehicleDataCheckSteps extends AbstractSteps {
 
     @And("^I enter \"(.*?)\"$")
     public void i_enter_as(String vehicleRegistration) throws IOException {
+        logger.info("Checking : "+ vehicleRegistration);
+        logger.info("               ");
         expectedVehicle = VehicleDataFromExcel.getExpectedVehicleData(vehicleRegistration);
         vehicleVerifcationPage = vehicleEnquiryPage.provideRegistrationNumber(expectedVehicle.getVehicle_Registration());
         vehicledetailsPage = vehicleVerifcationPage.confirmDetails();
@@ -51,7 +53,8 @@ public class VehicleDataCheckSteps extends AbstractSteps {
 
         @Then("^verify all vehicle details from an excel with DVLA information service$")
     public void verify_each_vehicle_in_the_document_with_DVLA_information_service() throws IOException {
-            System.out.println(expectedVehicle.getVehicle_Registration()+"==========================");
+            logger.info("Matching Data for : "+ expectedVehicle.getVehicle_Registration());
+            logger.info("               ");
             Assert.assertEquals("Vehicle make is validated", expectedVehicle.getVehicle_make(), vehicledetailsPage.getVehicleMake());
             Assert.assertEquals("date Of First Registration is validated", expectedVehicle.getDate_of_first_registration(), vehicledetailsPage.getDateOfFirstRegistration());
             Assert.assertEquals("year Of Manufacture is validated", expectedVehicle.getYear_of_manufacture(), vehicledetailsPage.getYearOfManufacture());
@@ -64,7 +67,9 @@ public class VehicleDataCheckSteps extends AbstractSteps {
             Assert.assertEquals("vehicle Type Approval is validated", expectedVehicle.getVehicle_type_approval(), vehicledetailsPage.getVehicleTypeApproval());
             Assert.assertEquals("wheelPlan is validated", expectedVehicle.getWheelplan(), vehicledetailsPage.getWheelPlan());
             Assert.assertEquals("revenueWeight is validated", expectedVehicle.getRevenue_weight(), vehicledetailsPage.getRevenueWeight());
-         webDriver.quit();
+            webDriver.quit();
+            logger.info("Closing Browser");
+            logger.info("               ");
         }
 
     }
