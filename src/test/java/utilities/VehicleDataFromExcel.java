@@ -12,13 +12,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.DirectoryIteratorException;
-import java.nio.file.Path;
+import java.nio.file.*;
 import java.util.*;
 
 public class VehicleDataFromExcel {
     static Properties  CON = null;
-    static String Directory;
+    static Path Directory;
 
 
     public static Map<String, List<String>> getData() throws IOException
@@ -26,9 +25,12 @@ public class VehicleDataFromExcel {
         CON = new Properties();
         FileInputStream fs = new FileInputStream(System.getProperty("user.dir")+"//src//test//java//Config//config.properties");
         CON.load(fs);
-        Directory= System.getProperty("user.dir")+"//src//"+CON.getProperty("Directory");
+
+        Directory= Paths.get(System.getProperty("user.dir")+"//src//"+CON.getProperty("Directory"));
         Path dataFile = GetFileList.getDataFileUri(Directory);
+
         InputStream is = null;
+
         Map<String, List<String>> vehicleData = new HashMap<String, List<String>>();
 
         is = (is == null) ? new FileInputStream(new File(dataFile.toUri())) : is;

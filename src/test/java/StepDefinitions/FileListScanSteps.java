@@ -5,21 +5,20 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.Given;
 import DirectoryScan.*;
 import org.junit.Assert;
-
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Path;
+import java.nio.file.*;
 import java.util.*;
 import java.util.stream.Stream;
 
 public class FileListScanSteps {
 
-    public String Directory1;
+    public Path Directory1;
     Map<String, List<String>> fileData;
     @Given("^I run the filelistScan on a \"(.*?)\"$")
     public void i_run_the_filelistScan_on_a(String Directory)  throws IOException {
 
-        Directory1 =  System.getProperty("user.dir") + "//src//"+Directory;
+        Directory1 =  Paths.get(System.getProperty("user.dir") + "//src//"+Directory);
         fileData = GetFileList.getFilenameAndDetails(Directory1);
 
     }
