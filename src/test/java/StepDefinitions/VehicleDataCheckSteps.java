@@ -2,24 +2,18 @@ package StepDefinitions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 import org.junit.Assert;
 import Pages.*;
 import model.Vehicle;
 import utilities.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import driver.WebDriverFactory;
-import org.openqa.selenium.support.PageFactory;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 import org.apache.logging.log4j.*;
 
 public class VehicleDataCheckSteps extends AbstractSteps {
 
-    private MainPage startPage;
     private VehicleEnquiryPage vehicleEnquiryPage;
     private VehicleVerificationPage vehicleVerifcationPage;
     private VehicleDetailsPage vehicledetailsPage;
@@ -31,8 +25,8 @@ public class VehicleDataCheckSteps extends AbstractSteps {
     public void the_DVLA_information_service_is_available() throws IOException {
 
         config = new Properties();
-        FileInputStream fs = new FileInputStream(System.getProperty("user.dir") + "//src//test//java//Config//config.properties");
-        config.load(fs);
+        FileInputStream fs1  = LoadConfigClass.configfile((FileInputStream fs) -> fs); ;
+        config.load(fs1);
 
         webDriver = WebDriverFactory.createInstance();
         logger.info("Opening Browser");
@@ -75,7 +69,6 @@ public class VehicleDataCheckSteps extends AbstractSteps {
             Assert.assertEquals("revenueWeight is validated", expectedVehicle.getRevenue_weight(), vehicledetailsPage.getVehicledetail("Revenue weight:"));
 
             webDriver.quit();
-
             logger.info("Closing Browser");
             logger.info("               ");
         }

@@ -5,7 +5,7 @@ import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-@CucumberOptions( features = {"classpath:features/VehicleDataCheck.feature"},
+@CucumberOptions( features = {"classpath:features/VehicleDataCheckExcel.feature"},
                   monochrome = true,
                   plugin = {"html:target/cucumber-html-report", "json:target/cucumber-json-report.json" })
 

@@ -13,10 +13,10 @@ Then verify all vehicle details from an excel with DVLA information service
 Examples:
 |VehicleRegistration|
 |VFZ1344            |
-|GK12YRF            |
-|LY15ULA            |
-|DV06 HBZ           |
-|HY66 WUT           |
+#|GK12YRF            |
+#|LY15ULA            |
+#|DV06 HBZ           |
+#|HY66 WUT           |
 
 
 
